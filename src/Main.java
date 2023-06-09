@@ -81,9 +81,14 @@ public class Main {
     static String calc(String input) throws ArrayIndexOutOfBoundsException{
         try {
             String[] words = input.split(" ");
+            if (words.length > 3) {
+                System.out.println("Формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+                throw new RuntimeException("Строка не соответствует условиям");
+            }
             String a = words[0];
             String b = words[1];
             String c = words[2];
+
 
 
 
@@ -99,7 +104,7 @@ public class Main {
             } else if (isNumeric(a) & isNumericRoman(c)) {
                 System.out.println("Умеем работать только с арабскими или римскими цифрами одновременно");
                 throw new RuntimeException("Строка не соответствует условиям");
-            } else if (isNumericRoman(c) & isNumeric(a)) {
+            } else if (isNumericRoman(a) & isNumeric(c)) {
                 System.out.println("Умеем работать только с арабскими или римскими цифрами одновременно");
                 throw new RuntimeException("Строка не соответствует условиям");
             } else if (isNumericRoman(a) & isNumericRoman(c)) {
@@ -125,7 +130,7 @@ public class Main {
                 throw new RuntimeException("Строка не соответствует условиям");
             }
         } catch (ArrayIndexOutOfBoundsException e){
-
+            System.out.println("Строка не является математической операцией");
             throw new RuntimeException("Введите строку соответствующую условиям");
            }
             }
